@@ -190,6 +190,10 @@
           <span>存放目录</span>
           <input type="text" id="dir" value="assets" spellcheck="false" />
         </label>
+        <label class="field">
+          <span>图片访问前缀</span>
+          <input type="text" id="base" value="https://lingyu.ynly4avq.xyz/" spellcheck="false" />
+        </label>
       </div>
       <div class="row-inline">
         <label class="check"><input type="checkbox" id="remember" /> 在本机记住 Token</label>
@@ -241,6 +245,7 @@
     const repoEl = $('#repo');
     const branchEl = $('#branch');
     const dirEl = $('#dir');
+    const baseEl = $('#base');
     const rememberEl = $('#remember');
     const overwriteEl = $('#overwrite');
     const dropEl = $('#drop');
@@ -264,6 +269,7 @@
         if (saved.repo) repoEl.value = saved.repo;
         if (saved.branch) branchEl.value = saved.branch;
         if (saved.dir !== undefined) dirEl.value = saved.dir;
+        if (saved.base) baseEl.value = saved.base;
         if (saved.remember && saved.token) {
           tokenEl.value = saved.token;
           rememberEl.checked = true;
@@ -275,12 +281,13 @@
         repo: repoEl.value.trim(),
         branch: branchEl.value.trim() || 'main',
         dir: dirEl.value.trim(),
+        base: baseEl.value.trim(),
         remember: rememberEl.checked,
         token: rememberEl.checked ? tokenEl.value.trim() : ''
       };
       try { localStorage.setItem(STORE, JSON.stringify(data)); } catch (e) { /* 隐私模式 */ }
     };
-    [repoEl, branchEl, dirEl, tokenEl].forEach((el) => el.addEventListener('change', saveSettings));
+    [repoEl, branchEl, dirEl, baseEl, tokenEl].forEach((el) => el.addEventListener('change', saveSettings));
     rememberEl.addEventListener('change', saveSettings);
     loadSettings();
 
@@ -481,7 +488,7 @@
 
     const pagesUrl = ({ dir, name }) => {
       const path = [dir, name].filter(Boolean).map(encodeURIComponent).join('/');
-      return `https://lingyu.ynly4avq.xyz/${path}`;
+      return `${baseEl.value.trim().replace(/\/+$/, '')}/${path}`;
     };
 
     uploadEl.addEventListener('click', async () => {

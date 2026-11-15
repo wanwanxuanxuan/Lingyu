@@ -1,8 +1,6 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -23,7 +21,6 @@ jobs:
         uses: actions/configure-pages@v5
         with:
           enablement: true
-          cname: lingyu.ynly4avq.xyz
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

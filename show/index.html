@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="灵屿 LingYu 概念演示：一分钟自动播放的产品巡览。" />
   <title>灵屿 LingYu — 一分钟，收进一颗岛</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=cursor2" />
 </head>
 <body>
   <div class="show" id="show">
@@ -13,6 +13,12 @@
       <span class="glow g1"></span>
       <span class="glow g2"></span>
       <span class="noise"></span>
+    </div>
+
+    <div class="fly-cursor" id="flyCursor" aria-hidden="true">
+      <span class="cursor-tip"></span>
+      <span class="cursor-arrow"></span>
+      <span class="cursor-ripple"></span>
     </div>
 
     <!-- 0 · 开场 -->
@@ -148,7 +154,6 @@
             <div><strong>22:18</strong><small>8° 晴</small></div>
             <span class="desk-media"><i></i> 暂无媒体播放</span>
           </div>
-          <span class="desk-cursor"></span>
           <span class="desk-hint">把鼠标推到最上缘</span>
         </div>
       </div>
@@ -246,6 +251,6 @@
     <p class="hint">空格 播放 / 暂停 · 点击章节跳转</p>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=cursor2"></script>
 </body>
 </html>
